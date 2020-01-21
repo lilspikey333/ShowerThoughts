@@ -41,7 +41,7 @@ class Post extends Component {
             }}
         ></input>
         <textarea
-            value={this.state.value}
+            value={this.state.thought}
             onChange={(e) => {
             this.getThought(e.target.value);
             }}
