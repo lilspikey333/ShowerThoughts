@@ -28,9 +28,10 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  post = obj => {
-    console.log("post called");
-    fetch(url, {
+
+  post = (obj) => {
+    console.log("post called")
+    fetch(url,  {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -39,8 +40,11 @@ class App extends Component {
         name: obj.name,
         thought: obj.thought
       })
-    }).catch(err => console.log(err));
-  };
+
+    }).then(res => this.fetchData())
+    .catch(err => console.log(err))
+  }
+
 
   render() {
     return (
