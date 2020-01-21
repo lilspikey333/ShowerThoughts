@@ -31,3 +31,5 @@ class Post extends Component {
         </div>
     }
 }
+
+export default Post

@@ -28,6 +28,10 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  post = (obj) => {
+    
+  }
+
   render() {
     return (
       <div className="App">
