@@ -29,7 +29,6 @@ class App extends Component {
   };
 
   post = (obj) => {
-    console.log("post called")
     fetch(url,  {
       method: "POST",
       headers: {
@@ -39,6 +38,47 @@ class App extends Component {
         name: obj.name,
         thought: obj.thought
       })
+    }).then(res => this.fetchData())
+    .catch(err => console.log(err))
+  }
+
+  update = (obj) => {
+    let putUrl = "http://localhost:4000/update/" + obj._id
+    fetch(putUrl,  {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: obj.name,
+        thought: obj.thought,
+        comments: [...obj.comments]
+      })
+    }).then(res => this.fetchData())
+    .catch(err => console.log(err))
+  }
+
+  comment = (id,str) => {
+    commentUrl="http://localhost:4000/comment/" + id
+    fetch(url,  {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        comment: str
+      })
+    }).then(res => this.fetchData())
+    .catch(err => console.log(err))
+  }
+
+  delete = (id) => {
+    deleteUrl="http://localhost:4000/" + id
+    fetch(url,  {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
     }).then(res => this.fetchData())
     .catch(err => console.log(err))
   }
