@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import Thoughts from "./components/Thoughts";
 import Header from "./components/Header";
-<<<<<<< HEAD
-import Post from "./components/Post"
-=======
 import Post from "./components/Post";
 import "bootstrap/dist/css/bootstrap.min.css";
->>>>>>> ccc0ed5d90c937e9da627dcc39a5d3d20c8b69ca
 
 const url = "http://localhost:4000/";
 class App extends Component {
