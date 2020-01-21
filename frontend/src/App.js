@@ -28,7 +28,6 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-<<<<<<< HEAD
   post = (obj) => {
     console.log("post called")
     fetch(url,  {
@@ -40,11 +39,9 @@ class App extends Component {
         name: obj.name,
         thought: obj.thought
       })
-    }).catch(err => console.log(err))
+    }).then(res => this.fetchData())
+    .catch(err => console.log(err))
   }
-=======
-  post = obj => {};
->>>>>>> fe98aa6e3a611187caf580c955750747f63ddef2
 
   render() {
     return (

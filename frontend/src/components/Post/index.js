@@ -19,9 +19,13 @@ class Post extends Component {
     this.setState(prevState => ({ thought: str }));
   };
 
-  // postThought = () => {
-  //     this.props.post({ ...this.state })
-  // }
+  postThought = () => {
+      this.setState({
+          name: '',
+          thought: ''
+      })
+      this.props.post({ ...this.state })
+  }
 
   render() {
       return (
@@ -45,7 +49,7 @@ class Post extends Component {
         <button
             className="button"
             onClick={() => {
-            this.props.post({ ...this.state });
+            this.postThought()
             }}
         >
             Submit
