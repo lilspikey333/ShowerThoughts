@@ -4,16 +4,18 @@ class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "You Name Here",
+      name: "",
       thought: ""
     };
   }
 
-  getName = str => {
+  getName = (str) => {
+    //e.preventdefault()
     this.setState(prevState => ({ name: str }));
   };
 
-  getThought = str => {
+  getThought = (str) => {
+    //e.preventdefault()
     this.setState(prevState => ({ thought: str }));
   };
 
@@ -22,32 +24,34 @@ class Post extends Component {
   // }
 
   render() {
-    <div className="flex-container-column new-post">
-      <input
-        ref={input => (this.input = input)}
-        type="text"
-        id="name-input"
-        value={this.state.name}
-        onchange={e => {
-          this.getName(e.target.value);
-        }}
-      ></input>
-      <input
-        type="text-area"
-        value={this.state.value}
-        onChange={e => {
-          this.getThought;
-        }}
-      ></input>
-      <button
-        className="button"
-        onClick={() => {
-          this.props.post({ ...this.state });
-        }}
-      >
-        Submit
-      </button>
-    </div>;
+      return (
+        <div className="flex-container-column new-post">
+        <input 
+            placeholder="Your Name Here"
+            ref={input => (this.input = input)}
+            type="text"
+            id="name-input"
+            value={this.state.name}
+            onChange={(e) => {
+            this.getName(e.target.value);
+            }}
+        ></input>
+        <textarea
+            value={this.state.value}
+            onChange={(e) => {
+            this.getThought(e.target.value);
+            }}
+        ></textarea>
+        <button
+            className="button"
+            onClick={() => {
+            this.props.post({ ...this.state });
+            }}
+        >
+            Submit
+        </button>
+        </div>
+      )
   }
 }
 

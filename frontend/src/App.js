@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Thoughts from "./components/Thoughts";
 import Header from "./components/Header";
+import Post from "./components/Post"
 
 const url = "http://localhost:4000/";
 class App extends Component {
@@ -28,14 +29,25 @@ class App extends Component {
   };
 
   post = (obj) => {
-    
+    console.log("post called")
+    fetch(url,  {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: obj.name,
+        thought: obj.thought
+      })
+    }).catch(err => console.log(err))
   }
 
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header post={this.post}/>
         <Thoughts thoughts={this.state.data} />
+        <Post post={this.post}/>
       </div>
     );
   }
