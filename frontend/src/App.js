@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Thoughts from "./components/Thoughts";
 import Header from "./components/Header";
-import Post from "./components/Post"
+import Post from "./components/Post";
 
 const url = "http://localhost:4000/";
 class App extends Component {
@@ -28,6 +28,7 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+
   post = (obj) => {
     fetch(url,  {
       method: "POST",
@@ -38,10 +39,12 @@ class App extends Component {
         name: obj.name,
         thought: obj.thought
       })
+
     }).then(res => this.fetchData())
     .catch(err => console.log(err))
   }
 
+<<<<<<< HEAD
   update = (obj) => {
     let putUrl = "http://localhost:4000/update/" + obj._id
     fetch(putUrl,  {
@@ -82,13 +85,15 @@ class App extends Component {
     }).then(res => this.fetchData())
     .catch(err => console.log(err))
   }
+=======
+>>>>>>> c172c03df2adeb2cce7882c83620cdc0db52943a
 
   render() {
     return (
       <div className="App">
-        <Header post={this.post}/>
+        <Header post={this.post} />
         <Thoughts thoughts={this.state.data} />
-        <Post post={this.post}/>
+        <Post post={this.post} />
       </div>
     );
   }
