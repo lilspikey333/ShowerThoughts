@@ -3,6 +3,7 @@ import "./App.css";
 import Thoughts from "./components/Thoughts";
 import Header from "./components/Header";
 import Post from "./components/Post";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const url = "http://localhost:4000/";
 class App extends Component {
