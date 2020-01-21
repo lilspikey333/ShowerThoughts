@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 import Thoughts from "./components/Thoughts";
+<<<<<<< HEAD
 import Header from "./components/Header";
 
 const url = "http://localhost:4000/";
+=======
+import Header from "./components/Header"
+>>>>>>> cd2a5f6da69823586ad1e904fd21b943c3739a6a
 
 class App extends Component {
   constructor() {
