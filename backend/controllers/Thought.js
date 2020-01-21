@@ -1,42 +1,37 @@
-const express = require('express')
-const router = express.router
+const express = require("express");
+const router = express.Router();
 
-const Thought = require('../models/Thought')
+const Thought = require("../models/Thought");
 
-router.get('/', (req, res) => {
-    Thought.find({})
-    .then(thought => res.json(thoughts))
-})
+router.get("/", (req, res) => {
+  Thought.find({}).then(thoughts => res.json(thoughts));
+});
 
-router.get('/:id', (req, res) => {
-    Thought.findOne({_id: req.params.id})
-    .then(thought => res.json(thought))
-} )
+router.get("/:id", (req, res) => {
+  Thought.findOne({ _id: req.params.id }).then(thought => res.json(thought));
+});
 
-router.post('/', (req, res) => {
-    Thought.create(req.body)
-    .then(() => res.redirect('/'))
-})
+router.post("/", (req, res) => {
+  Thought.create(req.body).then(() => res.redirect("/"));
+});
 
-router.put('/:id', (req, res) => {
-    Thought.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        {new: true}
-    ).then(() => res.redirect('/'))
-})
+router.put("/:id", (req, res) => {
+  Thought.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(() =>
+    res.redirect("/")
+  );
+});
 
-router.put('/comment/:id', (req, res) => {
-    Thought.findById(req.params.id)
+router.post("/comment/:id", (req, res) => {
+  Thought.findById(req.params.id)
     .then(thought => {
-        thought.comments.push(req.body.comment)
-        thought.save()
-    }).then((thought) => res.redirect('/' + thought._id)) 
-})
+      thought.comments.push(req.body.comment);
+      thought.save();
+    })
+    .then(thought => res.redirect("/"));
+});
 
-router.delete('/:id', (req, res) => {
-    Thought.findByIdAndDelete(this.params.id)
-    .then(() => res.redirect('/'))
-})
+router.delete("/:id", (req, res) => {
+  Thought.findByIdAndDelete(req.params.id).then(() => res.redirect("/"));
+});
 
-module.exports = router
+module.exports = router;
