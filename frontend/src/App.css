@@ -1,3 +1,11 @@
+.header {
+  display: grid;
+}
+
+.new-button {
+  
+}
+
 .thoughts {
   display: flex;
   flex-wrap: wrap;
