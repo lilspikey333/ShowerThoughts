@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Thoughts from "./components/Thoughts";
-
+import Header from "./components/Header"
 
 
 function App() {
