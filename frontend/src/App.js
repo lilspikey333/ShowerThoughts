@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Thoughts from "./components/Thoughts";
 import Header from "./components/Header";
-import Post from "./components/Post"
+import Post from "./components/Post";
 
 const url = "http://localhost:4000/";
 class App extends Component {
@@ -28,10 +28,9 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-<<<<<<< HEAD
-  post = (obj) => {
-    console.log("post called")
-    fetch(url,  {
+  post = obj => {
+    console.log("post called");
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -40,18 +39,15 @@ class App extends Component {
         name: obj.name,
         thought: obj.thought
       })
-    }).catch(err => console.log(err))
-  }
-=======
-  post = obj => {};
->>>>>>> fe98aa6e3a611187caf580c955750747f63ddef2
+    }).catch(err => console.log(err));
+  };
 
   render() {
     return (
       <div className="App">
-        <Header post={this.post}/>
+        <Header post={this.post} />
         <Thoughts thoughts={this.state.data} />
-        <Post post={this.post}/>
+        <Post post={this.post} />
       </div>
     );
   }

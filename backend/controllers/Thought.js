@@ -12,7 +12,9 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  Thought.create(req.body).then(() => res.redirect("/"));
+  Thought.create(req.body).then(thought => {
+    res.json(thought);
+  });
 });
 
 router.put("/update/:id", (req, res) => {
