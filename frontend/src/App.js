@@ -24,7 +24,6 @@ class App extends Component {
           data: res
         });
       })
-      .then(res => console.log(this.state))
       .catch(err => console.log(err));
   };
 

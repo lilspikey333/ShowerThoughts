@@ -1,9 +1,14 @@
-.App {
-  text-align: center;
+.thoughts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .thought-box {
   border: 2px black solid;
+  margin: 5px;
+  padding: 10px;
+  width: 200px;
 }
 
 li {
