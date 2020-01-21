@@ -27,9 +27,7 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  post = (obj) => {
-    
-  }
+  post = obj => {};
 
   render() {
     return (
