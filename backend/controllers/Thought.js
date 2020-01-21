@@ -15,7 +15,7 @@ router.post("/", (req, res) => {
   Thought.create(req.body).then(() => res.redirect("/"));
 });
 
-router.put("/:id", (req, res) => {
+router.put("/update/:id", (req, res) => {
   Thought.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(() =>
     res.redirect("/")
   );
