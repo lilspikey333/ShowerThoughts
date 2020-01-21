@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 class Post extends Component {
   constructor(props) {
@@ -9,53 +11,61 @@ class Post extends Component {
     };
   }
 
-  getName = (str) => {
+  getName = str => {
     //e.preventdefault()
     this.setState(prevState => ({ name: str }));
   };
 
-  getThought = (str) => {
+  getThought = str => {
     //e.preventdefault()
     this.setState(prevState => ({ thought: str }));
   };
 
   postThought = () => {
-      this.setState({
-          name: '',
-          thought: ''
-      })
-      this.props.post({ ...this.state })
-  }
+    this.setState({
+      name: "",
+      thought: ""
+    });
+    this.props.post({ ...this.state });
+  };
 
   render() {
-      return (
-        <div className="flex-container-column new-post">
-        <input 
+    return (
+      <Modal.Dialog>
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Body>
+          <input
             placeholder="Your Name Here"
             ref={input => (this.input = input)}
             type="text"
             id="name-input"
             value={this.state.name}
-            onChange={(e) => {
-            this.getName(e.target.value);
+            onChange={e => {
+              this.getName(e.target.value);
             }}
-        ></input>
-        <textarea
-            value={this.state.thought}
-            onChange={(e) => {
-            this.getThought(e.target.value);
-            }}
-        ></textarea>
-        <button
+          ></input>
+          <div className="flex-container-column new-post">
+            <textarea
+              value={this.state.thought}
+              onChange={e => {
+                this.getThought(e.target.value);
+              }}
+            ></textarea>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="primary"
             className="button"
             onClick={() => {
-            this.postThought()
+              this.postThought();
             }}
-        >
+          >
             Submit
-        </button>
-        </div>
-      )
+          </Button>
+        </Modal.Footer>
+      </Modal.Dialog>
+    );
   }
 }
 
