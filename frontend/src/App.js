@@ -4,7 +4,7 @@ import Thoughts from "./components/Thoughts";
 import Header from "./components/Header";
 import Post from "./components/Post";
 import ThoughtDetails from "./components/ThoughtDetails";
-// import "./bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const url = "http://localhost:4000/";
 class App extends Component {
