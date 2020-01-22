@@ -7,9 +7,10 @@ class Post extends Component {
     super(props);
     this.state = {
       name: "",
-      thought: ""
+      thought: "",
     };
   }
+
 
   getName = str => {
     //e.preventdefault()
@@ -29,6 +30,7 @@ class Post extends Component {
     this.props.post({ ...this.state });
     this.props.dismiss();
   };
+
 
   render() {
     return (
