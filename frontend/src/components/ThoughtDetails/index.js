@@ -23,17 +23,13 @@ class ThoughtDetails extends Component {
 
         postUpdate = () => {
             this.props.update({
-                _id: this.props._id,
+                _id: this.props.thought._id,
                 thought: this.state.thought,
                 name: this.state.name,
                 comments: this.state.comments
             })
             this.setState({edit: false})
         }
-        // postComment = () => {
-        //     this.props.update({...this.state.newComment})
-
-        // }
 
         showComments = () => (
             <ul>
