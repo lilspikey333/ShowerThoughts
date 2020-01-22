@@ -92,6 +92,7 @@ class App extends Component {
     .catch(err => console.log(err))
   }
 
+
   callDetails = (thought,e) => {
     console.log(thought)
     this.setState({
