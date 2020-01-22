@@ -7,11 +7,13 @@ class ThoughtDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
+        id: this.props.thought._id,
       thought: this.props.thought.thought,
       name: this.props.thought.name,
       comments: this.props.thought.comments,
       edit: false,
-      newComment: false
+      newComment: false,
+      show: this.props.show
     };
   }
 
@@ -26,26 +28,29 @@ class ThoughtDetails extends Component {
 
   postUpdate = () => {
     this.props.update({
-      _id: this.props._id,
+      _id: this.state.id,
       thought: this.state.thought,
       name: this.state.name,
       comments: this.state.comments
     });
-    this.setState({ edit: false });
-  };
-  // postComment = () => {
-  //     this.props.update({...this.state.newComment})
-
-  // }
-
-
-  componentDidMount = () => {
-      console.log(this.props.thought)
-    this.setState({
-      thought: this.props.thought.thought,
-      name: this.props.thought.name,
-      comments: this.props.thought.comments
+    this.setState({ 
+        edit: false, 
+        show: false    
     });
+  };
+
+
+  componentDidUpdate = (newProps) => {
+
+    if (newProps.thought !== this.props.thought) {
+        this.setState({
+            id: this.props.thought._id,
+        thought: this.props.thought.thought,
+        name: this.props.thought.name,
+        comments: this.props.thought.comments,
+        show: this.props.show
+        });
+    }
   };
 
   showComments = () => (
@@ -55,6 +60,10 @@ class ThoughtDetails extends Component {
       ))}
     </ul>
   );
+
+  stopShow = () => {
+      this.setState({ show:false })
+  }
 
   setRender = () => {
     if (this.state.edit) {
@@ -101,16 +110,18 @@ class ThoughtDetails extends Component {
   };
 
   render() {
+      console.log(this.props)
     return (
       <div>
-        <Modal {...this.props} size="xl">
-          <Modal.Header closeButton></Modal.Header>
+        <Modal show={this.state.show} size="xl">
 
           {this.setRender()}
           <div className="buttons">
             <button
               onClick={() => {
-                this.setState({ newComment: true });
+                this.setState({ 
+                    newComment: true,
+                });
               }}
             >
               Comment
@@ -122,15 +133,20 @@ class ThoughtDetails extends Component {
             >
               Edit
             </button>
-            <button onClick={() => this.props.delete(this.props.thought._id)}>
+            <button onClick={() => {
+                this.props.delete(this.props.thought._id)
+                this.setState({show: false})
+                }}>
               Delete
             </button>
+            <button onClick={() => {this.stopShow()}}>Cancel</button>
           </div>
           {this.state.newComment ? (
             <Comment
               className="comment"
               comment={this.props.comment}
               id={this.props.thought._id}
+              stopShow={this.stopShow}
             ></Comment>
           ) : (
             ""

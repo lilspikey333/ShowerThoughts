@@ -17,6 +17,7 @@ class Comment extends Component {
         const text = this.state.comment
         this.props.comment(this.props.id, text)
         this.setState({comment: ''})
+        this.props.stopShow()
     }
 
     render () {
