@@ -45,7 +45,6 @@ class App extends Component {
     .catch(err => console.log(err))
   }
 
-<<<<<<< HEAD
   update = (obj) => {
     let putUrl = "http://localhost:4000/update/" + obj._id
     fetch(putUrl,  {
@@ -86,8 +85,7 @@ class App extends Component {
     }).then(res => this.fetchData())
     .catch(err => console.log(err))
   }
-=======
->>>>>>> c172c03df2adeb2cce7882c83620cdc0db52943a
+
 
   render() {
     return (
