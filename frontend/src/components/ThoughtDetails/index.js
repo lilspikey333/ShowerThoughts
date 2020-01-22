@@ -23,6 +23,7 @@ class ThoughtDetails extends Component {
     this.setState({ name: str });
   };
 
+
   postUpdate = () => {
     this.props.update({
       _id: this.props._id,
@@ -36,6 +37,7 @@ class ThoughtDetails extends Component {
   //     this.props.update({...this.state.newComment})
 
   // }
+
 
   componentDidMount = () => {
       console.log(this.props.thought)
