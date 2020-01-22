@@ -10,12 +10,13 @@ class Comment extends Component {
 
     getComment = str => {
         //e.preventdefault()
-        this.setState(prevState => ({ name: str }));
+        this.setState(prevState => ({ comment: str }));
       };
 
     postComment = () => {
         const text = this.state.comment
-        this.props.comment(text)
+        this.props.comment(this.props.id, text)
+        this.setState({comment: ''})
     }
 
     render () {
@@ -24,19 +25,21 @@ class Comment extends Component {
                 <textarea
               value={this.state.comment}
               onChange={e => {
-                this.getThought(e.target.value);
+                this.getComment(e.target.value);
               }}
             ></textarea>
-            <Button
+            <button
             className="button"
             onClick={() => {
               this.postComment();
             }}
           >
             Submit
-          </Button>
+          </button>
             </div>
         )
     }
 
 }
+
+export default Comment

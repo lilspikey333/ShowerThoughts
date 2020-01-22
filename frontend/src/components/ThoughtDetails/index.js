@@ -5,27 +5,47 @@ class ThoughtDetails extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            thought: props.thought,
-            name: props.name,
-            comments: [...props.comments],
+            thought: this.props.thought.thought,
+            name: this.props.thought.name,
+            comments: this.props.thought.comments,
             edit: false,
             newComment: false
         }
+    }
 
         getThought = (str) => {
             this.setState({ thought: str })
         }
 
         getName = (str) => {
-            this.setState({ name: name})
+            this.setState({ name: str})
         }
 
         postUpdate = () => {
-            
+            this.props.update({
+                _id: this.props._id,
+                thought: this.state.thought,
+                name: this.state.name,
+                comments: this.state.comments
+            })
+            this.setState({edit: false})
         }
+        // postComment = () => {
+        //     this.props.update({...this.state.newComment})
+
+        // }
+
+        showComments = () => (
+            <ul>
+                {this.state.comments.map(comment => (
+                    <li>{comment}</li>
+                    ))}
+            </ul>
+        )
 
         setRender = () => {
-            if (this.edit) {
+            if (this.state.edit) {
+            
                 return (
                     <div className="edit-post">
                         <textarea
@@ -48,18 +68,13 @@ class ThoughtDetails extends Component {
             } else {
                 return (
                     <div className="details">
-                    <h4>{this.thought}</h4>
-                    <p>Courtesy of {this.name}</p>
-                    <ul>
-                        {this.comments.map(comment => (
-                            <li>{comment}</li>
-                        ))}
-                    </ul>
+                    <h4>{this.state.thought}</h4>
+                    <p>Courtesy of {this.state.name}</p>
+                    {this.state.comments ? this.showComments() : ''}
                     </div>
                 )
             }
         }
-    }
 
     render() {
         return (
@@ -68,11 +83,13 @@ class ThoughtDetails extends Component {
                 <div className="buttons">
                     <button onClick={() => {this.setState({newComment: true})}}>Comment</button>
                     <button onClick={() => {this.setState({edit: true})}}>Edit</button>
-                    <button>Delete</button>
+                    <button onClick={() => this.props.delete(this.props.thought._id)}>Delete</button>
                 </div>
-                {this.state.newComment ? <Comment className="comment" postComment={this.props.postComment}></Comment> : ''}
+                {this.state.newComment ? <Comment className="comment" comment={this.props.comment} id={this.props.thought._id}></Comment> : ''}
             </div>
         )
     }
 
 }
+
+export default ThoughtDetails

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+// import Modal from "react-bootstrap/Modal";
+// import Button from "react-bootstrap/Button";
 
 class Post extends Component {
   constructor(props) {
@@ -31,9 +31,10 @@ class Post extends Component {
 
   render() {
     return (
-      <Modal.Dialog>
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body>
+        <>
+    {/*    <Modal.Dialog>
+         <Modal.Header closeButton></Modal.Header>
+         <Modal.Body> */}
           <input
             placeholder="Your Name Here"
             ref={input => (this.input = input)}
@@ -52,9 +53,9 @@ class Post extends Component {
               }}
             ></textarea>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
+        {/* </Modal.Body>
+        <Modal.Footer> */}
+          <button
             variant="primary"
             className="button"
             onClick={() => {
@@ -62,9 +63,10 @@ class Post extends Component {
             }}
           >
             Submit
-          </Button>
-        </Modal.Footer>
-      </Modal.Dialog>
+          </button>
+        {/* </Modal.Footer>
+      </Modal.Dialog> */}
+      </>
     );
   }
 }
