@@ -26,7 +26,7 @@ router.put("/update/:id", (req, res) => {
 router.post("/comment/:id", (req, res) => {
   Thought.findById(req.params.id)
     .then(thought => {
-      thought.comments.push(req.body.comment);
+      thought.comments.unshift(req.body.comment);
       thought.save();
     })
     .then(thought => res.redirect("/"));
