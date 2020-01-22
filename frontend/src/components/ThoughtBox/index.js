@@ -8,9 +8,9 @@ function ThoughtBox(props) {
     <section className="thought-box">
       <h5>{props.thought}</h5>
       <p>Courtesy of {props.name}</p>
-      <ul>
+      <ul className="comment-list">
           {shorterComments.map(comment => (
-              <li>{comment}</li>
+              <li className="comments">{comment}</li>
           ))}
       </ul>
     </section>

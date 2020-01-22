@@ -22,9 +22,22 @@
   margin: 5px;
   padding: 10px;
   width: 200px;
+  height: 300px;
+  overflow: hidden;
 }
 
 li {
-  list-style: none;
+  list-style: none; 
+}
+
+.comments {
+  font-size: small;
+  padding: 2px;
+}
+
+.comment-list{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   
 }
