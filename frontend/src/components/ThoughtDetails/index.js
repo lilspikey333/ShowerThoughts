@@ -7,7 +7,7 @@ class ThoughtDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        id: this.props.thought._id,
+      id: this.props.thought._id,
       thought: this.props.thought.thought,
       name: this.props.thought.name,
       comments: this.props.thought.comments,
@@ -25,7 +25,6 @@ class ThoughtDetails extends Component {
     this.setState({ name: str });
   };
 
-
   postUpdate = () => {
     this.props.update({
       _id: this.state.id,
@@ -33,23 +32,21 @@ class ThoughtDetails extends Component {
       name: this.state.name,
       comments: this.state.comments
     });
-    this.setState({ 
-        edit: false, 
-        show: false    
+    this.setState({
+      edit: false,
+      show: false
     });
   };
 
-
-  componentDidUpdate = (newProps) => {
-
+  componentDidUpdate = newProps => {
     if (newProps.thought !== this.props.thought) {
-        this.setState({
-            id: this.props.thought._id,
+      this.setState({
+        id: this.props.thought._id,
         thought: this.props.thought.thought,
         name: this.props.thought.name,
         comments: this.props.thought.comments,
         show: this.props.show
-        });
+      });
     }
   };
 
@@ -62,8 +59,8 @@ class ThoughtDetails extends Component {
   );
 
   stopShow = () => {
-      this.setState({ show:false })
-  }
+    this.setState({ show: false });
+  };
 
   setRender = () => {
     if (this.state.edit) {
@@ -110,36 +107,49 @@ class ThoughtDetails extends Component {
   };
 
   render() {
-      console.log(this.props)
+    console.log(this.props);
     return (
       <div>
         <Modal show={this.state.show} size="xl">
-
           {this.setRender()}
           <div className="buttons">
-            <button
-              onClick={() => {
-                this.setState({ 
-                    newComment: true,
-                });
-              }}
-            >
-              Comment
-            </button>
-            <button
-              onClick={() => {
-                this.setState({ edit: true });
-              }}
-            >
-              Edit
-            </button>
-            <button onClick={() => {
-                this.props.delete(this.props.thought._id)
-                this.setState({show: false})
-                }}>
-              Delete
-            </button>
-            <button onClick={() => {this.stopShow()}}>Cancel</button>
+            <Modal.Footer>
+              <Button
+              variant="primary"
+                onClick={() => {
+                  this.setState({
+                    newComment: true
+                  });
+                }}
+              >
+                Comment
+              </Button>
+              <Button
+              variant="info"
+                onClick={() => {
+                  this.setState({ edit: true });
+                }}
+              >
+                Edit
+              </Button>
+              <Button
+              variant="danger"
+                onClick={() => {
+                  this.props.delete(this.props.thought._id);
+                  this.setState({ show: false });
+                }}
+              >
+                Delete
+              </Button>
+              <Button
+              variant="secondary"
+                onClick={() => {
+                  this.stopShow();
+                }}
+              >
+                Cancel
+              </Button>
+            </Modal.Footer>
           </div>
           {this.state.newComment ? (
             <Comment
