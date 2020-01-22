@@ -27,45 +27,48 @@ class Post extends Component {
       thought: ""
     });
     this.props.post({ ...this.state });
+    this.props.dismiss()
   };
 
   render() {
     return (
-        <>
-       <Modal.Dialog>
-         <Modal.Header closeButton></Modal.Header>
-         <Modal.Body>
-          <input
-            placeholder="Your Name Here"
-            ref={input => (this.input = input)}
-            type="text"
-            id="name-input"
-            value={this.state.name}
-            onChange={e => {
-              this.getName(e.target.value);
-            }}
-          ></input>
-          <div className="flex-container-column new-post">
-            <textarea
-              value={this.state.thought}
-              onChange={e => {
-                this.getThought(e.target.value);
-              }}
-            ></textarea>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="primary"
-            className="button"
-            onClick={() => {
-              this.postThought();
-            }}
-          >
-            Submit
-          </Button>
-        </Modal.Footer>
-      </Modal.Dialog>
+      <>
+        <Modal {...this.props} size="xl">
+          <Modal.Dialog>
+            <Modal.Header closeButton></Modal.Header>
+            <Modal.Body>
+              <input
+                placeholder="Your Name Here"
+                ref={input => (this.input = input)}
+                type="text"
+                id="name-input"
+                value={this.state.name}
+                onChange={e => {
+                  this.getName(e.target.value);
+                }}
+              ></input>
+              <div className="flex-container-column new-post">
+                <textarea
+                  value={this.state.thought}
+                  onChange={e => {
+                    this.getThought(e.target.value);
+                  }}
+                ></textarea>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="primary"
+                className="button"
+                onClick={() => {
+                  this.postThought();
+                }}
+              >
+                Submit
+              </Button>
+            </Modal.Footer>
+          </Modal.Dialog>
+        </Modal>
       </>
     );
   }

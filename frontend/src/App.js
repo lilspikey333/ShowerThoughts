@@ -13,7 +13,8 @@ class App extends Component {
     this.state = {
       data: [],
       details: false,
-      detailThought: {}
+      detailThought: {},
+      showNewThought: false
     };
   }
 
@@ -29,12 +30,12 @@ class App extends Component {
           data: res
         });
       })
-      .then(() => this.setState({details: false}))
+      .then(() => this.setState({ details: false }))
       .catch(err => console.log(err));
   };
 
-  post = (obj) => {
-    fetch(url,  {
+  post = obj => {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -43,15 +44,16 @@ class App extends Component {
         name: obj.name,
         thought: obj.thought
       })
-    }).then(res => this.fetchData())
-    .catch(err => console.log(err))
-  }
+    })
+      .then(res => this.fetchData())
+      .catch(err => console.log(err));
+  };
 
-  update = (obj) => {
-    console.log("update called")
-    console.log(obj)
-    const putUrl = "http://localhost:4000/update/" + obj._id
-    fetch(putUrl,  {
+  update = obj => {
+    console.log("update called");
+    console.log(obj);
+    const putUrl = "http://localhost:4000/update/" + obj._id;
+    fetch(putUrl, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
@@ -61,15 +63,16 @@ class App extends Component {
         thought: obj.thought,
         comments: obj.comments
       })
-    }).then(res => this.fetchData())
-    .catch(err => console.log(err))
-  }
+    })
+      .then(res => this.fetchData())
+      .catch(err => console.log(err));
+  };
 
-  comment = (id,str) => {
-    console.log("comment called")
-    const commentUrl="http://localhost:4000/comment/" + id
-    console.log(commentUrl)
-    fetch(commentUrl,  {
+  comment = (id, str) => {
+    console.log("comment called");
+    const commentUrl = "http://localhost:4000/comment/" + id;
+    console.log(commentUrl);
+    fetch(commentUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -77,38 +80,61 @@ class App extends Component {
       body: JSON.stringify({
         comment: str
       })
-    }).then(res => this.fetchData())
-    .catch(err => console.log(err))
-  }
+    })
+      .then(res => this.fetchData())
+      .catch(err => console.log(err));
+  };
 
-  delete = (id) => {
-    const deleteUrl="http://localhost:4000/" + id
-    fetch(deleteUrl,  {
+  delete = id => {
+    const deleteUrl = "http://localhost:4000/" + id;
+    fetch(deleteUrl, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
       }
-    }).then(res => this.fetchData())
-    .catch(err => console.log(err))
-  }
+    })
+      .then(res => this.fetchData())
+      .catch(err => console.log(err));
+  };
 
-
-  callDetails = (thought,e) => {
-    console.log(thought)
+  callDetails = (thought, e) => {
+    console.log(thought);
     this.setState({
       details: true,
       detailThought: thought
-    })
-  }
+    });
+  };
+
+  handleNewThought = () => {
+    this.setState({
+      showNewThought: true
+    });
+  };
+
+  closeNewThought = () => {
+    this.setState({
+      showNewThought: false
+    });
+  };
 
   render() {
-    console.log(this.comment)
+    console.log(this.comment);
     return (
       <div className="App">
-        <Header post={this.post}/>
+        <Header post={this.post} newButton={this.handleNewThought} />
         <Thoughts thoughts={this.state.data} callDetails={this.callDetails} />
-        <Post post={this.post}/>
-        {this.state.details ? <ThoughtDetails thought={this.state.detailThought} update={this.update} delete={this.delete} comment={this.comment}/> : ''}
+        <Post
+          post={this.post}
+          show={this.state.showNewThought}
+          dismiss={this.closeNewThought}
+        />
+        <ThoughtDetails
+          show={this.state.details}
+          thought={this.state.detailThought}
+          update={this.update}
+          delete={this.delete}
+          comment={this.comment}
+        />
       </div>
     );
   }
