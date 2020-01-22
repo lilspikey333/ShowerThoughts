@@ -7,9 +7,10 @@ class Post extends Component {
     super(props);
     this.state = {
       name: "",
-      thought: ""
+      thought: "",
     };
   }
+
 
   getName = str => {
     //e.preventdefault()
@@ -30,10 +31,11 @@ class Post extends Component {
     this.props.dismiss()
   };
 
+
   render() {
     return (
       <>
-        <Modal {...this.props} size="xl">
+        <Modal show={this.props.show} size="xl">
           <Modal.Dialog>
             <Modal.Header closeButton></Modal.Header>
             <Modal.Body>
@@ -65,6 +67,13 @@ class Post extends Component {
                 }}
               >
                 Submit
+              </Button>
+              <Button 
+              variant="primary"
+              className="button"
+              onClick={() => {this.props.dismiss()}}
+              >
+                  Cancel
               </Button>
             </Modal.Footer>
           </Modal.Dialog>
