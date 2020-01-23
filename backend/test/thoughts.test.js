@@ -84,7 +84,7 @@ describe("POST /comment/", () => {
       .get("/")
       .set("Accept", " application/json")
       .end((err, res) => {
-        testId = res.body[res.body.length - 2]._id;
+        testId = res.body[res.body.length - 1]._id;
         done();
       });
   });
@@ -143,7 +143,7 @@ describe("PUT /update/", () => {
 });
 
 describe("DELETE /", () => {
-    let testId;
+  let testId;
   before(done => {
     api
       .get("/")
@@ -164,7 +164,7 @@ describe("DELETE /", () => {
       .get("/")
       .set("Accept", "application/json")
       .end((err, res) => {
-        expect(res.body[0]._id).to.not.include(testId);
+        expect(res.body[res.body.length - 1]._id).to.not.include(testId);
         done();
       });
   });
