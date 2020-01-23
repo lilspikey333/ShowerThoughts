@@ -1,11 +1,17 @@
 .header {
-  display: grid;
-  grid-template-columns: 1fr 100px;
+  /* display: grid;
+  grid-template-columns: 1fr 100px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
 }
 
 .new-button {
-  grid-column: 2;
-  margin: 10px 10px 0 0;
+  /* grid-column: 2; */
+  margin: 5px;
+  height: 45px;
+  font-size: smaller;
 }
 .title {
   grid-column: 1;
