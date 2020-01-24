@@ -13,3 +13,4 @@ app.use(cors());
 app.use('/', Thought)
 
 app.listen(4000, () => console.log("App is running on 4000!"));
+
